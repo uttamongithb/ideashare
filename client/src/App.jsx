@@ -8,6 +8,7 @@ import AddEditIdea from './pages/AddEditIdea'
 import Navbar from './components/Navbar'
 import Explore from './pages/Explore'
 import Profile from './pages/Profile'
+import RequireAuth from './components/RequireAuth'
 
 export default function App(){
   return (
@@ -17,11 +18,11 @@ export default function App(){
         <Route path='/' element={<Landing/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/idea/:id' element={<AddEditIdea/>} />
-        <Route path='/add' element={<AddEditIdea/>} />
-        <Route path='/explore' element={<Explore/>} />
-        <Route path='/profile' element={<Profile/>} />
+        <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>} />
+        <Route path='/idea/:id' element={<RequireAuth><AddEditIdea/></RequireAuth>} />
+        <Route path='/add' element={<RequireAuth><AddEditIdea/></RequireAuth>} />
+        <Route path='/explore' element={<RequireAuth><Explore/></RequireAuth>} />
+        <Route path='/profile' element={<RequireAuth><Profile/></RequireAuth>} />
       </Routes>
     </div>
   )
