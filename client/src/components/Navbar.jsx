@@ -22,7 +22,17 @@ export default function Navbar(){
   },[])
 
   useEffect(()=>{
-    // keep local state stable — canonical profile is fetched in later effect
+    // If a token exists but no user in localStorage, fetch profile once
+    if (token && !currentUser){
+      setToken(token)
+      API.get('/profile').then(res=>{
+        localStorage.setItem('user', JSON.stringify(res.data))
+        setCurrentUser(res.data)
+      }).catch(()=>{
+        localStorage.removeItem('user')
+        setCurrentUser(null)
+      })
+    }
   },[token, currentUser])
 
   useEffect(() => {
@@ -83,7 +93,14 @@ export default function Navbar(){
 
   const avatarSrc = avatarCandidates[avatarTry] || null
 
-  // removed debug logging in production
+  useEffect(() => {
+    // debug logging for diagnosis
+    try {
+      console.debug('[Navbar] user.avatar=', currentUser?.avatar)
+      console.debug('[Navbar] avatarCandidates=', avatarCandidates)
+      console.debug('[Navbar] avatarTry=', avatarTry, 'avatarSrc=', avatarSrc)
+    } catch (e) {}
+  }, [currentUser?.avatar, avatarCandidates, avatarTry, avatarSrc])
 
   useEffect(()=>{
     // reset try index and broken flag when avatar value changes
@@ -127,6 +144,7 @@ export default function Navbar(){
                     alt={currentUser.name}
                     style={{width:'100%',height:'100%',borderRadius:'50%',objectFit:'cover'}}
                     onError={(e)=>{
+                      console.warn('[Navbar] avatar load error', avatarSrc, e?.nativeEvent || e)
                       // try the next candidate if available
                       const next = avatarTry + 1
                       if (next < avatarCandidates.length) {
