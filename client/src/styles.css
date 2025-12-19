@@ -24,6 +24,7 @@ body { font-family: var(--font-sans); background:#f4f7fb; color:#0f172a; -webkit
 a, button{font-family:inherit}
 
 /* Utility classes to mirror your Next.js font variables */
+
 .font-rethink { font-family: var(--font-rethink), var(--font-sans); }
 .font-spot { font-family: var(--font-spot-mono); }
 
@@ -33,12 +34,6 @@ h1, h2, h3, h4, .lp-title, .hero-title { font-family: var(--font-rethink); margi
 .lp-title{font-weight:600}
 .hero-title{font-weight:600}
 a, button{font-family:inherit}
-
-/* Headings use Rethink Sans (fallback to Poppins/Inter) for a distinctive look */
-h1, h2, h3, h4, .lp-title, .hero-title { font-family: var(--font-rethink); margin:0; color: #0f172a }
-.lp-title, .hero-title { letter-spacing: -0.02em }
-.lp-title{font-weight:600}
-.hero-title{font-weight:600}
 
 /* Slightly relaxed paragraph leading for readability */
 p, li { line-height:1.6 }
