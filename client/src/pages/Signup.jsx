@@ -19,7 +19,7 @@ export default function Signup(){
       localStorage.setItem('user', JSON.stringify(user))
       setToken(token)
       try { window.dispatchEvent(new Event('authChange')) } catch(e) {}
-      nav('/dashboard')
+      nav('/profile')
     }catch(err){
       alert(err.response?.data?.message || err.message)
     }finally{ setBusy(false) }

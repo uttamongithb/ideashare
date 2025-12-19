@@ -43,7 +43,7 @@ export default function AddEditIdea(){
       if (id) await API.put(`/ideas/${id}`, payload)
       else await API.post('/ideas', payload)
       toast && toast(id ? 'Idea updated' : 'Idea created')
-      nav('/dashboard')
+      nav('/profile')
     }catch(err){
       console.error(err)
       toast && toast(err.response?.data?.message || err.message)
@@ -75,7 +75,7 @@ export default function AddEditIdea(){
 
             <div style={{display:'flex',gap:12,alignItems:'center',marginTop:12}}>
               <button className="btn-primary" disabled={busy}>{busy ? 'Saving...' : (id ? 'Update Idea' : 'Create Idea')}</button>
-              <button type="button" className="btn-ghost" onClick={()=>nav('/dashboard')}>Cancel</button>
+              <button type="button" className="btn-ghost" onClick={()=>nav('/profile')}>Cancel</button>
             </div>
           </form>
         </div>

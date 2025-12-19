@@ -103,13 +103,11 @@ button{ cursor:pointer }
 	.idea-actions .btn-edit, .idea-actions .btn-delete{padding:6px 8px}
 }
 
-.dashboard-grid{display:grid;grid-template-columns:1fr}
 .sidebar{display:none}
 .trending{display:none}
 .feed{min-height:200px}
 
 @media (max-width:900px){
-	.dashboard-grid{grid-template-columns:1fr;grid-auto-rows:min-content}
 	.sidebar, .trending{display:none}
 	.feed{width:100%}
 }
@@ -305,7 +303,7 @@ button:hover, .btn-primary:hover{transform:scale(1.03)}
 }
 
 /* Polished profile layout */
-.profile-grid{display:grid;grid-template-columns:320px 1fr;gap:22px;margin-top:18px}
+.profile-grid{display:grid;grid-template-columns:320px 1fr;gap:22px;margin-top:18px;align-items:start}
 .profile-card{background:#fff;padding:22px;border-radius:16px;border:1px solid rgba(15,23,42,0.04);box-shadow:0 12px 40px rgba(2,6,23,0.08);display:flex;flex-direction:column;gap:16px}
 .profile-top{display:flex;gap:14px;align-items:center}
 .avatar-wrap{width:96px;height:96px;flex-shrink:0}
@@ -325,7 +323,11 @@ textarea.profile-input { min-height:120px; resize:vertical }
 .stat-number{font-weight:800;font-size:18px}
 .stat-label{font-size:12px;color:#6b7280}
 
-.ideas-grid-inner{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+/* make the ideas grid responsive and remove large empty gaps */
+.ideas-grid-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;align-items:start}
+
+/* ensure the wrapper in profile behaves as a normal block so header sits at top */
+.profile-page .ideas-grid{display:block}
 
 @media (max-width:900px){
 	.profile-grid{grid-template-columns:1fr}

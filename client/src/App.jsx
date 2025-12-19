@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Dashboard from './pages/Dashboard'
 import AddEditIdea from './pages/AddEditIdea'
 import Navbar from './components/Navbar'
 import Explore from './pages/Explore'
@@ -18,7 +17,7 @@ export default function App(){
         <Route path='/' element={<Landing/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>} />
+        {/* Dashboard page removed; use Profile for user ideas */}
         <Route path='/idea/:id' element={<RequireAuth><AddEditIdea/></RequireAuth>} />
         <Route path='/add' element={<RequireAuth><AddEditIdea/></RequireAuth>} />
         <Route path='/explore' element={<RequireAuth><Explore/></RequireAuth>} />
